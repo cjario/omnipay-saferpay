@@ -30,6 +30,7 @@ class AuthorizeRequest extends AbstractRequest
     {
         $this->setParameter('description', $description);
     }
+
     public function getDescription()
     {
         return $this->getParameter('description');
@@ -41,23 +42,23 @@ class AuthorizeRequest extends AbstractRequest
 
         $requestData = [
             "RequestHeader" => [
-                "SpecVersion" => "1.17",
-                "CustomerId" => $this->getCustomerId(),
-                "RequestId" => uniqid(),
+                "SpecVersion"    => "1.17",
+                "CustomerId"     => $this->getCustomerId(),
+                "RequestId"      => uniqid(),
                 "RetryIndicator" => 0,
             ],
-            "TerminalId" => $this->getTerminalId(),
-            "Payment" => [
-                "Amount" => [
-                    "Value" => $this->getAmountInteger(),
+            "TerminalId"    => $this->getTerminalId(),
+            "Payment"       => [
+                "Amount"      => [
+                    "Value"        => $this->getAmountInteger(),
                     "CurrencyCode" => $this->getCurrency(),
                 ],
-                "OrderId" => $this->getTransactionId(),
+                "OrderId"     => $this->getTransactionId(),
                 "Description" => $this->getDescription(),
             ],
-            "ReturnUrls" => [
+            "ReturnUrls"    => [
                 "Success" => $this->getReturnUrl(),
-                "Fail" => $this->getCancelUrl(),
+                "Fail"    => $this->getCancelUrl(),
             ],
         ];
 
@@ -71,6 +72,6 @@ class AuthorizeRequest extends AbstractRequest
 
     public function createResponse($response)
     {
-        return new AuthorizeResponse($this, (array)$response);
+        return new AuthorizeResponse($this, $response);
     }
 }

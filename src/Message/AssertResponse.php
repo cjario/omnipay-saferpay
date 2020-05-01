@@ -18,8 +18,20 @@ class AssertResponse extends AbstractResponse
     {
         return false;
     }
+
     public function isSuccessful()
     {
-        return true;
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED' ? true : false;
     }
+
+    public function isAuthorized()
+    {
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED' ? true : false;
+    }
+
+    public function getTransactionId()
+    {
+        return isset($this->data['Transaction']['Id']) ? $this->data['Transaction']['Id'] : null;
+    }
+
 }
