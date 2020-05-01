@@ -41,7 +41,7 @@ class AuthorizeRequest extends AbstractRequest
 
         $requestData = [
             "RequestHeader" => [
-                "SpecVersion" => "1.7",
+                "SpecVersion" => "1.17",
                 "CustomerId" => $this->getCustomerId(),
                 "RequestId" => uniqid(),
                 "RetryIndicator" => 0,
@@ -71,6 +71,6 @@ class AuthorizeRequest extends AbstractRequest
 
     public function createResponse($response)
     {
-        return new AuthorizeResponse($this, $response);
+        return new AuthorizeResponse($this, (array)$response);
     }
 }

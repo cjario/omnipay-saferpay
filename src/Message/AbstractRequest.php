@@ -54,9 +54,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             'Authorization' => 'Basic '. $this->getAuthCredentials(),
 
         ];
-        $httpResponse = $this->httpClient->post($url, $headers, json_encode($postData))->send()->json();
+        $httpResponse = $this->httpClient->request('POST',$url, $headers, json_encode($postData));
 
-        return $this->createResponse($httpResponse);
+        return $this->createResponse(json_decode($httpResponse->getBody()->getContents()));
     }
 
     protected function createResponse($response)
