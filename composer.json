@@ -1,0 +1,25 @@
+{
+    "name": "cjario/omnipay-saferpay",
+    "type": "library",
+    "description": "Saferpay driver for the Omnipay payment processing library",
+    "homepage": "https://github.com/cjario/omnipay-saferpay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tarun M",
+            "email": "tmukherjee13@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Saferpay\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "omnipay/common": "~3.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~3.0"
+    }
+}
