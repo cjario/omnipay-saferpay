@@ -19,7 +19,7 @@ class CaptureResponse extends AbstractResponse
         return isset($this->data['Status']) && $this->data['Status'] == 'CAPTURED' ? true : false;
     }
 
-    public function getCaptureId()
+    public function getTransactionReference()
     {
         return isset($this->data['CaptureId']) ? $this->data['CaptureId'] : null;
     }
