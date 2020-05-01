@@ -29,8 +29,16 @@ class AssertResponse extends AbstractResponse
         return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED' ? true : false;
     }
 
-    public function getTransactionId()
+    public function isCaptured()
     {
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'CAPTURED' ? true : false;
+    }
+
+    public function getTransactionReference()
+    {
+        if ($this->isCaptured()) {
+            return isset($this->data['Transaction']['CaptureId']) ? $this->data['Transaction']['CaptureId'] : null;
+        }
         return isset($this->data['Transaction']['Id']) ? $this->data['Transaction']['Id'] : null;
     }
 
