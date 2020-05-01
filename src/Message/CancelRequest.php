@@ -16,11 +16,13 @@ class CancelRequest extends AbstractRequest
         return $this->getParameter('customerId');
     }
 
-    public function getTransactionId(){
+    public function getTransactionId()
+    {
         return $this->getParameter('transactionId');
     }
 
-    public function setTransactionId($transactionId){
+    public function setTransactionId($transactionId)
+    {
         $this->setParameter('transactionId', $transactionId);
     }
 
@@ -30,10 +32,10 @@ class CancelRequest extends AbstractRequest
         $this->validate('transactionId', 'customerId');
 
         $requestData = [
-            "RequestHeader" => [
-                "SpecVersion" => "1.7",
-                "CustomerId" => $this->getCustomerId(),
-                "RequestId" => uniqid(),
+            "RequestHeader"        => [
+                "SpecVersion"    => $this->getSpec(),
+                "CustomerId"     => $this->getCustomerId(),
+                "RequestId"      => uniqid(),
                 "RetryIndicator" => 0,
             ],
             "TransactionReference" => [

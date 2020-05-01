@@ -16,11 +16,13 @@ class AssertRequest extends AbstractRequest
         return $this->getParameter('customerId');
     }
 
-    public function getToken(){
+    public function getToken()
+    {
         return $this->getParameter('token');
     }
 
-    public function setToken($token){
+    public function setToken($token)
+    {
         $this->setParameter('token', $token);
     }
 
@@ -31,12 +33,12 @@ class AssertRequest extends AbstractRequest
 
         $requestData = [
             "RequestHeader" => [
-                "SpecVersion" => "1.7",
-                "CustomerId" => $this->getCustomerId(),
-                "RequestId" => uniqid(),
+                "SpecVersion"    => $this->getSpec(),
+                "CustomerId"     => $this->getCustomerId(),
+                "RequestId"      => uniqid(),
                 "RetryIndicator" => 0,
             ],
-            "Token" => $this->getToken()
+            "Token"         => $this->getToken()
         ];
 
         return $requestData;

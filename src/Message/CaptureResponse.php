@@ -16,6 +16,12 @@ class CaptureResponse extends AbstractResponse
 {
     public function isSuccessful()
     {
-        return true;
+        return isset($this->data['Status']) && $this->data['Status'] == 'CAPTURED' ? true : false;
     }
+
+    public function getCaptureId()
+    {
+        return isset($this->data['CaptureId']) ? $this->data['CaptureId'] : null;
+    }
+
 }

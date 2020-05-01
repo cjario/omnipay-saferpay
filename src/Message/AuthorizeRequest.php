@@ -42,7 +42,7 @@ class AuthorizeRequest extends AbstractRequest
 
         $requestData = [
             "RequestHeader" => [
-                "SpecVersion"    => "1.17",
+                "SpecVersion"    => $this->getSpec(),
                 "CustomerId"     => $this->getCustomerId(),
                 "RequestId"      => uniqid(),
                 "RetryIndicator" => 0,
