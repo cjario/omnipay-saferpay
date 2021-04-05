@@ -17,9 +17,9 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "omnipay/common": "^3"
+        "omnipay/common": "*"
     },
     "require-dev": {
-        "omnipay/tests": "^3"
+        "omnipay/tests": "*"
     }
 }
