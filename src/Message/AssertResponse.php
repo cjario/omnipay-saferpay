@@ -3,7 +3,6 @@
 namespace Omnipay\Saferpay\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
-use Omnipay\Common\Message\RedirectResponseInterface;
 
 /**
  * Saferpay Response
@@ -21,25 +20,25 @@ class AssertResponse extends AbstractResponse
 
     public function isSuccessful()
     {
-        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED' ? true : false;
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED';
     }
 
     public function isAuthorized()
     {
-        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED' ? true : false;
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'AUTHORIZED';
     }
 
     public function isCaptured()
     {
-        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'CAPTURED' ? true : false;
+        return isset($this->data['Transaction']['Status']) && $this->data['Transaction']['Status'] == 'CAPTURED';
     }
 
     public function getTransactionReference()
     {
         if ($this->isCaptured()) {
-            return isset($this->data['Transaction']['CaptureId']) ? $this->data['Transaction']['CaptureId'] : null;
+            return $this->data['Transaction']['CaptureId'] ?? null;
         }
-        return isset($this->data['Transaction']['Id']) ? $this->data['Transaction']['Id'] : null;
+        return $this->data['Transaction']['Id'] ?? null;
     }
 
 }

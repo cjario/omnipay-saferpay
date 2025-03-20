@@ -38,7 +38,7 @@ class AuthorizeRequest extends AbstractRequest
 
     public function getData()
     {
-        $this->validate('amount', 'currency', 'transactionId', 'terminalId', 'customerId', 'returnUrl', 'cancelUrl');
+        $this->validate('amount', 'currency', 'transactionId', 'terminalId', 'customerId', 'returnUrl', 'description');
 
         $requestData = [
             "RequestHeader" => [
@@ -56,9 +56,8 @@ class AuthorizeRequest extends AbstractRequest
                 "OrderId"     => $this->getTransactionId(),
                 "Description" => $this->getDescription(),
             ],
-            "ReturnUrls"    => [
-                "Success" => $this->getReturnUrl(),
-                "Fail"    => $this->getCancelUrl(),
+            "ReturnUrl"    => [
+                "Url" => $this->getReturnUrl(),
             ],
         ];
 

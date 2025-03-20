@@ -16,12 +16,12 @@ class CaptureResponse extends AbstractResponse
 {
     public function isSuccessful()
     {
-        return isset($this->data['Status']) && $this->data['Status'] == 'CAPTURED' ? true : false;
+        return isset($this->data['Status']) && $this->data['Status'] == 'CAPTURED';
     }
 
     public function getTransactionReference()
     {
-        return isset($this->data['CaptureId']) ? $this->data['CaptureId'] : null;
+        return $this->data['CaptureId'] ?? null;
     }
 
 }
