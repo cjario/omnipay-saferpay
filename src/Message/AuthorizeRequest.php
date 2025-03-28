@@ -36,6 +36,16 @@ class AuthorizeRequest extends AbstractRequest
         return $this->getParameter('description');
     }
 
+	public function setLanguage(string $language)
+	{
+		$this->setParameter('language', $language);
+	}
+
+	public function getLanguage()
+	{
+		return $this->getParameter('language');
+	}
+
     public function getData()
     {
         $this->validate('amount', 'currency', 'transactionId', 'terminalId', 'customerId', 'returnUrl', 'description');
@@ -60,6 +70,13 @@ class AuthorizeRequest extends AbstractRequest
                 "Url" => $this->getReturnUrl(),
             ],
         ];
+
+		$language = $this->getLanguage();
+		if (!empty($language)) {
+			$requestData['Payer'] = [
+				'languageCode' => $language,
+			];
+		}
 
         return $requestData;
     }
