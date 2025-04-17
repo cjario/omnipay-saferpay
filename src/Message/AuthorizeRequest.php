@@ -79,6 +79,10 @@ class AuthorizeRequest extends AbstractRequest
 		    $requestData["Wallets"] = $this->getWallets();
 	    }
 
+	    if (!empty($this->getConfigSet())) {
+		    $requestData["ConfigSet"] = $this->getConfigSet();
+	    }
+
 		$language = $this->getLanguage();
 		if (!empty($language)) {
 			$requestData['Payer'] = [
@@ -98,6 +102,16 @@ class AuthorizeRequest extends AbstractRequest
     {
         return new AuthorizeResponse($this, $response);
     }
+
+	public function setConfigSet(string $value)
+	{
+		return $this->setParameter('configSet', $value);
+	}
+
+	public function getConfigSet()
+	{
+		return $this->getParameter('configSet');
+	}
 
 	public function getWallets()
 	{
