@@ -71,6 +71,14 @@ class AuthorizeRequest extends AbstractRequest
             ],
         ];
 
+		if (!empty($this->getPaymentMethods())) {
+			$requestData["PaymentMethods"] = $this->getPaymentMethods();
+		}
+
+	    if (!empty($this->getWallets())) {
+		    $requestData["Wallets"] = $this->getWallets();
+	    }
+
 		$language = $this->getLanguage();
 		if (!empty($language)) {
 			$requestData['Payer'] = [
@@ -90,4 +98,25 @@ class AuthorizeRequest extends AbstractRequest
     {
         return new AuthorizeResponse($this, $response);
     }
+
+	public function getWallets()
+	{
+		return $this->getParameter('wallets');
+	}
+
+	public function getPaymentMethods()
+	{
+		return $this->getParameter('paymentMethods');
+	}
+
+	public function setWallets(array $wallets)
+	{
+		return $this->setParameter('wallets', $wallets);
+	}
+
+	public function setPaymentMethods(array $paymentMethods)
+	{
+		return $this->setParameter('paymentMethods', $paymentMethods);
+	}
+
 }
