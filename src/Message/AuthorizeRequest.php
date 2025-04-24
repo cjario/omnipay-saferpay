@@ -83,6 +83,10 @@ class AuthorizeRequest extends AbstractRequest
 		    $requestData["ConfigSet"] = $this->getConfigSet();
 	    }
 
+		if ($this->getShowHolderName()) {
+			$requestData['CardForm']['HolderName'] = 'MANDATORY';
+		}
+
 		$language = $this->getLanguage();
 		if (!empty($language)) {
 			$requestData['Payer'] = [
@@ -131,6 +135,16 @@ class AuthorizeRequest extends AbstractRequest
 	public function setPaymentMethods(array $paymentMethods)
 	{
 		return $this->setParameter('paymentMethods', $paymentMethods);
+	}
+
+	public function setShowHolderName(bool $value)
+	{
+		return $this->setParameter('showHolderName', $value);
+	}
+
+	public function getShowHolderName()
+	{
+		return (bool) $this->getParameter('showHolderName');
 	}
 
 }
