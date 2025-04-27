@@ -13,13 +13,7 @@ class Gateway extends AbstractGateway
         return 'Saferpay';
     }
 
-    public function getDefaultParameters()
-    {
-        $settings = parent::getDefaultParameters();
-        return $settings;
-    }
-
-    public function initialize(array $parameters = array())
+    public function initialize(array $parameters = array()): Gateway
     {
         $this->parameters = new ParameterBag;
 
@@ -66,7 +60,7 @@ class Gateway extends AbstractGateway
         return $this->getParameter('password');
     }
 
-    public function getAuthCredentials()
+    public function getAuthCredentials(): string
     {
         $this->validate('username', 'password');
 

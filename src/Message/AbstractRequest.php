@@ -6,7 +6,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
 {
     const BASE_URL      = 'https://www.saferpay.com/api';
     const BASE_URL_TEST = 'https://test.saferpay.com/api';
-    const SPEC_VERSION  = '1.17';
+    const SPEC_VERSION  = '1.44';
 
     public function getAccountId()
     {

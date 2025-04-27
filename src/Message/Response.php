@@ -20,11 +20,11 @@ class Response extends AbstractResponse
 
     public function getTransactionReference()
     {
-        return isset($this->data['reference']) ? $this->data['reference'] : null;
+        return $this->data['reference'] ?? null;
     }
 
     public function getMessage()
     {
-        return isset($this->data['message']) ? $this->data['message'] : null;
+        return $this->data['message'] ?? null;
     }
 }

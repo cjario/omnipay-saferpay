@@ -30,7 +30,7 @@ class AuthorizeResponse extends AbstractResponse implements RedirectResponseInte
 
     public function getTransactionReference()
     {
-        return isset($this->data['Token']) ? $this->data['Token'] : null;
+        return $this->data['Token'] ?? null;
     }
 
     public function getRedirectUrl()
